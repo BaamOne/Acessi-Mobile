@@ -4,19 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import LoginComponent from "../../components/Login/LoginComponent";
 
 const LoginPage = () => {
-  return (
-    <View style={styles.container}>
-      <LoginComponent />
-    </View>
-  );
+  return <LoginComponent />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default LoginPage;
