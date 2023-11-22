@@ -9,9 +9,10 @@ import {
   Input,
   Center,
   Button,
+  Link,
 } from "native-base";
 import React, { useState } from "react";
-import { Link } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState<string>("");
@@ -19,6 +20,12 @@ const LoginComponent = () => {
 
   const handleSubmit = () => {
     console.log("Submit foi feito");
+  };
+
+  const navigation = useNavigation();
+
+  const handleRegisterClick = () => {
+    navigation.navigate("/register-user" as never);
   };
 
   return (
@@ -35,9 +42,20 @@ const LoginComponent = () => {
             />
           </Heading>
         </VStack>
-        <Stack space={4} w="75%" maxW="300px" mx="auto">
-          <Input size="md" variant="underlined" placeholder="E-mail" />
-          <Input size="md" variant="underlined" placeholder="Senha" />
+        <Stack space={4} w="100%" maxW="500px" mx="auto">
+          <Input
+            size="md"
+            variant="underlined"
+            placeholder="E-mail"
+            width="100%"
+          />
+          <Input
+            size="md"
+            variant="underlined"
+            placeholder="Senha"
+            width="100%"
+            type="password"
+          />
 
           <Button borderRadius="full" colorScheme="blue">
             Entrar
@@ -45,7 +63,7 @@ const LoginComponent = () => {
 
           <Stack direction="column" space={3} alignItems="center">
             <Text>Esquece a senha ? </Text>
-            <Link href="/RegisterUser">Cadastre-se</Link>
+            <Link onPress={handleRegisterClick}>Cadastre-se</Link>
           </Stack>
         </Stack>
       </View>
