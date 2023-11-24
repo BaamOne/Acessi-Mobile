@@ -1,20 +1,30 @@
 // src/pages/LoginPage.tsx
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 import LoginComponent from "../../components/Login/LoginComponent";
-import RegisterUser from "../../components/RegisterUser/RegisterUser";
+import { Box, View } from "native-base";
+import { StyleSheet } from "react-native";
 
-const Stack = createStackNavigator();
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
-const LoginPage = () => {
+interface LoginPageProps {
+  navigation: any; // Replace 'any' with the appropriate type for the 'navigation' prop
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ navigation }) => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="login">
-        <Stack.Screen name="login" component={LoginComponent} />
-        <Stack.Screen name="register-user" component={RegisterUser} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <Box flex={1} bg="#fff">
+        <View style={styles.container}>
+          <LoginComponent navigation={navigation}></LoginComponent>
+        </View>
+      </Box>
+    </>
   );
 };
 

@@ -1,24 +1,35 @@
-import { Box, NativeBaseProvider } from "native-base";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import LoginPage from "./src/pages/Login/LoginPage";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import RegisterUserPage from "./src/pages/RegisterUser/RegisterUserPage";
+import { NativeBaseProvider } from "native-base";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Box flex={1} bg="#fff" alignItems="center" justifyContent="center">
-        <View style={styles.container}>
-          <LoginPage />
-        </View>
-      </Box>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="login">
+          <Stack.Screen
+            name="login"
+            component={LoginPage}
+            options={{
+              title: "Acessi+",
+              headerTitleAlign: "center", // Centraliza o título
+            }}
+          />
+          <Stack.Screen
+            name="register-user"
+            component={RegisterUserPage}
+            options={{
+              title: "Cadastro usuário",
+              headerTitleAlign: "center", // Centraliza o título
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

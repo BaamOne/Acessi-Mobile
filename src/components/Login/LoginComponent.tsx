@@ -12,9 +12,14 @@ import {
   Link,
 } from "native-base";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 
-const LoginComponent = () => {
+import { NavigationProp } from "@react-navigation/native";
+
+type LoginComponentProps = {
+  navigation: NavigationProp<any>;
+};
+
+const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -22,10 +27,8 @@ const LoginComponent = () => {
     console.log("Submit foi feito");
   };
 
-  const navigation = useNavigation();
-
   const handleRegisterClick = () => {
-    navigation.navigate("/register-user" as never);
+    navigation.navigate("register-user");
   };
 
   return (
@@ -42,18 +45,12 @@ const LoginComponent = () => {
             />
           </Heading>
         </VStack>
-        <Stack space={4} w="100%" maxW="500px" mx="auto">
-          <Input
-            size="md"
-            variant="underlined"
-            placeholder="E-mail"
-            width="100%"
-          />
+        <Stack direction="column" space={4} w="100%" maxW="300">
+          <Input size="md" variant="underlined" placeholder="E-mail" />
           <Input
             size="md"
             variant="underlined"
             placeholder="Senha"
-            width="100%"
             type="password"
           />
 
