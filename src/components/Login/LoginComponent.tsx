@@ -10,6 +10,7 @@ import {
   Center,
   Button,
   Link,
+  Divider,
 } from "native-base";
 import React, { useState } from "react";
 
@@ -34,27 +35,25 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   return (
     <>
       <View>
-        <VStack>
-          <Heading size="md">
-            <Image
-              source={require("../../images/acessiLogo.png")}
-              alt="Acessi+"
-              size="xs"
-              width={"100%"}
-              marginBottom="20px"
-            />
-          </Heading>
-        </VStack>
-        <Stack direction="column" space={4} w="100%" maxW="300">
-          <Input size="md" variant="underlined" placeholder="E-mail" />
+        <Image
+          source={require("../../images/acessiLogo.png")}
+          alt="Acessi+"
+          size="md"
+          width="60%"
+          marginBottom="25px"
+          alignSelf="center"
+        />
+        <Stack direction="column" space={4}>
+          <Input size="md" variant="underlined" placeholder="E-mail" mx={12} />
           <Input
             size="md"
             variant="underlined"
             placeholder="Senha"
             type="password"
+            mx={12}
           />
 
-          <Button borderRadius="full" colorScheme="blue">
+          <Button borderRadius="full" colorScheme="blue" mx={12}>
             Entrar
           </Button>
 

@@ -23,15 +23,14 @@ const RegisterUser: React.FC = () => {
     <>
       <View>
         <VStack>
-          <Heading size="md">
-            <Image
-              source={require("../../images/acessiLogo.png")}
-              alt="Acessi+"
-              size="xs"
-              width={"100%"}
-              marginBottom="20px"
-            />
-          </Heading>
+          <Image
+            source={require("../../images/acessiLogo.png")}
+            alt="Acessi+"
+            size="md"
+            width="60%"
+            marginBottom="25px"
+            alignSelf="center"
+          />
         </VStack>
         <Stack space={4} w="100%" maxW="500px" mx="auto">
           <div>
@@ -41,6 +40,7 @@ const RegisterUser: React.FC = () => {
               placeholder="Nome Completo"
               value={fullName}
               onChangeText={(value) => setFullName(value)}
+              mx={12}
             />
             <Input
               size="md"
@@ -48,6 +48,7 @@ const RegisterUser: React.FC = () => {
               placeholder="Email"
               value={email}
               onChangeText={(value) => setEmail(value)}
+              mx={12}
             />
             <Input
               size="md"
@@ -56,6 +57,7 @@ const RegisterUser: React.FC = () => {
               type="password"
               value={password}
               onChangeText={(value) => setPassword(value)}
+              mx={12}
             />
             <Input
               size="md"
@@ -64,16 +66,18 @@ const RegisterUser: React.FC = () => {
               type="password"
               value={confirmPassword}
               onChangeText={(value) => setConfirmPassword(value)}
+              mx={12}
             />
           </div>
         </Stack>
 
-        <Stack alignItems="center" marginTop="10px">
+        <Stack marginTop="10px">
           <VStack space={3}>
             <Button
               borderRadius="full"
               colorScheme="blue"
               onPress={handleRegister}
+              mx={12}
             >
               Cadastrar
             </Button>
