@@ -28,8 +28,16 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
     console.log("Submit foi feito");
   };
 
-  const handleRegisterClick = () => {
+  const handleRegisterUserClick = () => {
     navigation.navigate("register-user");
+  };
+
+  const handleForgotPasswordClick = () => {
+    navigation.navigate("forgot-password");
+  };
+
+  const handleSubmitButton = () => {
+    navigation.navigate("home");
   };
 
   return (
@@ -53,13 +61,18 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
             mx={12}
           />
 
-          <Button borderRadius="full" colorScheme="blue" mx={12}>
+          <Button
+            borderRadius="full"
+            colorScheme="blue"
+            mx={12}
+            onPress={handleSubmitButton}
+          >
             Entrar
           </Button>
 
           <Stack direction="column" space={3} alignItems="center">
-            <Text>Esquece a senha ? </Text>
-            <Link onPress={handleRegisterClick}>Cadastre-se</Link>
+            <Link onPress={handleForgotPasswordClick}>Esqueceu a senha ?</Link>
+            <Link onPress={handleRegisterUserClick}>Cadastre-se</Link>
           </Stack>
         </Stack>
       </View>
