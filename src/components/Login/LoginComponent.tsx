@@ -15,6 +15,8 @@ import {
 import React, { useState } from "react";
 
 import { NavigationProp } from "@react-navigation/native";
+import { UserModel } from "../../interfaces/User/UserInterface";
+import { UserService } from "../../services/User/UserService";
 
 type LoginComponentProps = {
   navigation: NavigationProp<any>;
@@ -23,9 +25,11 @@ type LoginComponentProps = {
 const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const serviceUser = new UserService();
 
-  const handleSubmit = () => {
-    console.log("Submit foi feito");
+  const user: UserModel = {
+    emailUser: email,
+    passwordUser: password,
   };
 
   const handleRegisterUserClick = () => {
@@ -37,7 +41,16 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   };
 
   const handleSubmitButton = () => {
-    navigation.navigate("home");
+    console.log(email);
+    console.log(password);
+    serviceUser.LoginUser(user).then((res) => {
+      if (res.status == 200) {
+        navigation.navigate("home");
+      } else {
+        //Criar compontent de alerta
+        alert("Usuário ou senha inválidos");
+      }
+    });
   };
 
   return (
@@ -52,11 +65,20 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
           alignSelf="center"
         />
         <Stack direction="column" space={4}>
-          <Input size="md" variant="underlined" placeholder="E-mail" mx={12} />
+          <Input
+            size="md"
+            variant="underlined"
+            placeholder="E-mail"
+            mx={12}
+            value={email}
+            onChangeText={setEmail}
+          />
           <Input
             size="md"
             variant="underlined"
             placeholder="Senha"
+            value={password}
+            onChangeText={setPassword}
             type="password"
             mx={12}
           />

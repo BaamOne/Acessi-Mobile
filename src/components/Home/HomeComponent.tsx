@@ -23,9 +23,9 @@ const HomeComponent = () => {
           marginBottom="25px"
         />
         <HStack space={4}>
-          <Button colorScheme="success"> Cadastre-se </Button>
+          <Button colorScheme="blue"> Cadastre-se </Button>
           <Button variant="ghost" colorScheme="success">
-            Saiba mais
+            <Text style={{ color: "blue" }}>Saiba mais</Text>
           </Button>
         </HStack>
       </Stack>
