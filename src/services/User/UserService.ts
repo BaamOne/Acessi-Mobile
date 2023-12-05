@@ -14,6 +14,7 @@ export class UserService {
   }
 
   async LoginUser(user: UserModel) {
+    console.log(user);
     return await axios.post(`${this.API}/login/auth`, user);
   }
 }

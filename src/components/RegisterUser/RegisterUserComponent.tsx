@@ -8,15 +8,68 @@ import {
   VStack,
   View,
 } from "native-base";
+import { UserService } from "../../services/User/UserService";
+import { UserModel } from "../../interfaces/User/UserInterface";
 
 const RegisterUser: React.FC = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const serviceUser = new UserService();
 
   const handleRegister = () => {
-    // Lógica para realizar o cadastro do usuário
+    console.log(`entrou confirmacao`);
+
+    const user: UserModel = {
+      nameUser: fullName,
+      emailUser: email,
+      passwordUser: password,
+    };
+    let erros = Validate(user, confirmPassword);
+
+    if (erros !== null) {
+      //Criar componente para exibir mensagem conforme parametro
+      console.log(erros);
+    } else {
+      //serviceUser.CreateUser(user);
+      //Enviar email de confirmacao apoos isso
+      //Criar componente para exibir mensagem conforme parametro
+      console.log(`Funcionando`);
+    }
+  };
+
+  const Validate = (data: UserModel, confirmPassword: string) => {
+    let erros: any = {};
+    if (!data.nameUser) {
+      erros.name = "Nome é obrigatório.";
+    }
+
+    if (!data.emailUser) {
+      erros.email = "E-mail é obrigatório.";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.emailUser)
+    ) {
+      erros.email = "Endereço de e-mail inválido. Exemplo: exemplo@email.com";
+    }
+
+    if (!data.passwordUser) {
+      erros.password = "Senha é obrigatória.";
+    }
+
+    if (
+      data.passwordUser &&
+      confirmPassword &&
+      data.passwordUser !== confirmPassword
+    ) {
+      erros.confirmationPassword = "As senhas não coincidem.";
+    }
+
+    if (!confirmPassword) {
+      erros.confirmationPassword = "Confirmação de senha é obrigatória.";
+    }
+
+    return erros;
   };
 
   return (
