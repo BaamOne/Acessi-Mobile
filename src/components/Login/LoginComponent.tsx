@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import { NavigationProp } from "@react-navigation/native";
 import { UserModel } from "../../interfaces/User/UserInterface";
 import { UserService } from "../../services/User/UserService";
+import AlertComponent from "../AlertComponent/AlertComponent";
 
 type LoginComponentProps = {
   navigation: NavigationProp<any>;
@@ -25,6 +26,10 @@ type LoginComponentProps = {
 const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertStatus, setAlertStatus] = useState<
+    "success" | "error" | "info" | "warning" | ""
+  >("");
   const serviceUser = new UserService();
 
   const user: UserModel = {
@@ -32,25 +37,28 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
     passwordUser: password,
   };
 
+  const handleSubmitButton = () => {
+    serviceUser.LoginUser(user).then((res) => {
+      if (res == 200) {
+        navigation.navigate("home");
+      } else {
+        //Criar compontent de alerta
+        setAlertMessage("Usuário ou senha inválidos");
+        setAlertStatus("warning");
+      }
+    });
+  };
+
   const handleRegisterUserClick = () => {
     navigation.navigate("register-user");
+  };
+  const handleAlertClose = () => {
+    setAlertMessage("");
+    setAlertStatus("");
   };
 
   const handleForgotPasswordClick = () => {
     navigation.navigate("forgot-password");
-  };
-
-  const handleSubmitButton = () => {
-    console.log(email);
-    console.log(password);
-    serviceUser.LoginUser(user).then((res) => {
-      if (res.status == 200) {
-        navigation.navigate("home");
-      } else {
-        //Criar compontent de alerta
-        alert("Usuário ou senha inválidos");
-      }
-    });
   };
 
   return (
@@ -79,9 +87,17 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
             placeholder="Senha"
             value={password}
             onChangeText={setPassword}
-            type="password"
+            type={"password"}
             mx={12}
           />
+
+          {alertMessage && (
+            <AlertComponent
+              message={alertMessage}
+              status={alertStatus}
+              onClose={handleAlertClose}
+            />
+          )}
 
           <Button
             borderRadius="full"

@@ -10,6 +10,7 @@ import {
 } from "native-base";
 import { UserService } from "../../services/User/UserService";
 import { UserModel } from "../../interfaces/User/UserInterface";
+import AlertComponent from "../AlertComponent/AlertComponent";
 
 const RegisterUser: React.FC = () => {
   const [fullName, setFullName] = useState("");
@@ -17,44 +18,59 @@ const RegisterUser: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const serviceUser = new UserService();
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertStatus, setAlertStatus] = useState<
+    "success" | "error" | "info" | "warning" | ""
+  >("");
 
   const handleRegister = () => {
-    console.log(`entrou confirmacao`);
-
     const user: UserModel = {
       nameUser: fullName,
       emailUser: email,
       passwordUser: password,
     };
-    let erros = Validate(user, confirmPassword);
+    let erros = Validate(user);
 
-    if (erros !== null) {
-      //Criar componente para exibir mensagem conforme parametro
-      console.log(erros);
+    if (erros !== null && erros !== "") {
+      setAlertMessage(erros);
+      setAlertStatus("warning");
     } else {
-      //serviceUser.CreateUser(user);
-      //Enviar email de confirmacao apoos isso
-      //Criar componente para exibir mensagem conforme parametro
-      console.log(`Funcionando`);
+      ///Mudar logica para enviar e-mail e confirmacao e apos confirmado criar o usuario
+      serviceUser.CreateUser(user).then((res) => {
+        if (res == 200) {
+          setAlertMessage(
+            "Enviado e-mail de confirmação para " + user.emailUser + "."
+          );
+          setAlertStatus("success");
+        } else {
+          setAlertMessage("Ocorreu algum erro ao cadastrar o usuario!");
+          setAlertStatus("error");
+        }
+      });
+      clearFields();
     }
   };
 
-  const Validate = (data: UserModel, confirmPassword: string) => {
-    let erros: any = {};
+  const handleAlertClose = () => {
+    setAlertMessage("");
+    setAlertStatus("");
+  };
+
+  const Validate = (data: UserModel) => {
     if (!data.nameUser) {
-      erros.name = "Nome é obrigatório.";
+      return "Nome é obrigatório.";
     }
 
     if (!data.emailUser) {
-      erros.email = "E-mail é obrigatório.";
+      return "E-mail é obrigatório.";
     } else if (
       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.emailUser)
     ) {
-      erros.email = "Endereço de e-mail inválido. Exemplo: exemplo@email.com";
+      return "Endereço de e-mail inválido. Exemplo: exemplo@email.com";
     }
 
     if (!data.passwordUser) {
-      erros.password = "Senha é obrigatória.";
+      return "Senha é obrigatória.";
     }
 
     if (
@@ -62,14 +78,21 @@ const RegisterUser: React.FC = () => {
       confirmPassword &&
       data.passwordUser !== confirmPassword
     ) {
-      erros.confirmationPassword = "As senhas não coincidem.";
+      return "As senhas não coincidem.";
     }
 
     if (!confirmPassword) {
-      erros.confirmationPassword = "Confirmação de senha é obrigatória.";
+      return "Confirmação de senha é obrigatória.";
     }
 
-    return erros;
+    return "";
+  };
+
+  const clearFields = () => {
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
@@ -122,6 +145,13 @@ const RegisterUser: React.FC = () => {
               mx={12}
             />
           </div>
+          {alertMessage && (
+            <AlertComponent
+              message={alertMessage}
+              status={alertStatus}
+              onClose={handleAlertClose}
+            />
+          )}
         </Stack>
 
         <Stack marginTop="10px">
