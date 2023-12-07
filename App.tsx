@@ -6,7 +6,8 @@ import RegisterUserPage from "./src/pages/RegisterUser/RegisterUserPage";
 import { NativeBaseProvider, Image, Text } from "native-base";
 import ForgetPasswordPage from "./src/pages/ForgetPassword/ForgotPasswordPage";
 import HomePage from "./src/pages/Home/HomePage";
-import { Ionicons } from "@expo/vector-icons";
+import HeaderLeftComponent from "./src/components/HeadersComponent/Left/HeaderLeftComponent";
+import HeaderRightComponent from "./src/components/HeadersComponent/Right/HeaderRightComponent";
 
 const Stack = createNativeStackNavigator();
 
@@ -45,20 +46,8 @@ export default function App() {
             component={HomePage}
             options={{
               title: "",
-              headerLeft: () => (
-                <Image
-                  source={require("./src/images/acessiLogo.png")}
-                  alt="Acessi+"
-                  size="xs"
-                  mx={2}
-                  width={100}
-                />
-              ),
-              headerRight: () => (
-                <div style={{ marginRight: "15px" }}>
-                  <Ionicons name="notifications" size={24} color="black" />
-                </div>
-              ),
+              headerLeft: () => <HeaderLeftComponent></HeaderLeftComponent>,
+              headerRight: () => <HeaderRightComponent></HeaderRightComponent>,
             }}
           />
         </Stack.Navigator>
