@@ -3,11 +3,11 @@ import LoginPage from "./src/pages/Login/LoginPage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import RegisterUserPage from "./src/pages/RegisterUser/RegisterUserPage";
-import { NativeBaseProvider, Image, Text } from "native-base";
-import ForgetPasswordPage from "./src/pages/ForgetPassword/ForgotPasswordPage";
-import HomePage from "./src/pages/Home/HomePage";
+import { NativeBaseProvider } from "native-base";
+import ForgetPasswordPage from "./src/pages/ForgetPassword/ForgetPasswordPage";
 import HeaderLeftComponent from "./src/components/HeadersComponent/Left/HeaderLeftComponent";
 import HeaderRightComponent from "./src/components/HeadersComponent/Right/HeaderRightComponent";
+import BasePage from "./src/pages/Base/BasePage";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +33,7 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="forgot-password"
+            name="forget-password"
             component={ForgetPasswordPage}
             options={{
               title: "Esqueceu a senha",
@@ -42,8 +42,8 @@ export default function App() {
           />
 
           <Stack.Screen
-            name="home"
-            component={HomePage}
+            name="basepage"
+            component={BasePage}
             options={{
               title: "",
               headerLeft: () => <HeaderLeftComponent></HeaderLeftComponent>,

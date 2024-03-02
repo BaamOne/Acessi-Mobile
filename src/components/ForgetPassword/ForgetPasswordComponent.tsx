@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button, Text, Image, Stack } from "native-base";
 
-const ForgotPasswordComponent = () => {
+const ForgetPasswordComponent = () => {
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -32,4 +32,4 @@ const ForgotPasswordComponent = () => {
     </>
   );
 };
-export default ForgotPasswordComponent;
+export default ForgetPasswordComponent;

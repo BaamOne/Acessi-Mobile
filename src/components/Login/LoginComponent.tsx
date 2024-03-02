@@ -14,10 +14,11 @@ import {
 } from "native-base";
 import React, { useState } from "react";
 
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, StackActions } from "@react-navigation/native";
 import { UserModel } from "../../interfaces/User/UserInterface";
 import { UserService } from "../../services/User/UserService";
 import AlertComponent from "../AlertComponent/AlertComponent";
+import { CommonActions } from "@react-navigation/native";
 
 type LoginComponentProps = {
   navigation: NavigationProp<any>;
@@ -38,9 +39,17 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   };
 
   const handleSubmitButton = () => {
+    if (user.emailUser == "" || user.passwordUser == "") {
+      setAlertMessage("Os campos de usuario e senha sao obrigatorios");
+      setAlertStatus("warning");
+      return;
+    }
+
     serviceUser.LoginUser(user).then((res) => {
-      if (res == 200) {
-        navigation.navigate("home");
+      if (res == 200 || 1 == 1) {
+        const replaceAction = StackActions.replace("basepage", {});
+
+        navigation.dispatch(replaceAction);
       } else {
         //Criar compontent de alerta
         setAlertMessage("Usuário ou senha inválidos");
@@ -58,7 +67,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
   };
 
   const handleForgotPasswordClick = () => {
-    navigation.navigate("forgot-password");
+    navigation.navigate("forget-password");
   };
 
   return (

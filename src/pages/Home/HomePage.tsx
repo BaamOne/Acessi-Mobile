@@ -1,32 +1,34 @@
 import * as React from "react";
-import { Text, View, Image } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import HomeComponent from "../../components/Home/HomeComponent";
-import { StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MoreInfoComponent from "../../components/MoreInfo/MoreInfoComponent";
+import MoreInfoPage from "../MoreInfo/MoreInfoPage";
 
 const Tab = createMaterialBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-const HomePage = () => {
+const HomeStack = createNativeStackNavigator();
+
+function HomePage() {
   return (
-    <>
-      {" "}
-      <NavigationContainer independent={true}>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="Home"
-            component={HomeComponent}
-            options={{
-              tabBarIcon: () => (
-                <FontAwesome5 name="house-user" size={24} color="black" />
-              ),
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </>
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        options={{ headerShown: false }}
+        name="Home"
+        component={HomeComponent}
+      />
+      <HomeStack.Screen
+        name="MoreInfo"
+        options={{
+          title: "",
+          headerShown: false,
+        }}
+        component={MoreInfoComponent}
+      />
+    </HomeStack.Navigator>
   );
-};
+}
 
 export default HomePage;

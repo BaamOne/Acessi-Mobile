@@ -1,8 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View, StyleSheet } from "react-native";
 import { Box, Image, Stack, Button, HStack } from "native-base";
+import { NavigationProp } from "@react-navigation/native";
 
-const HomeComponent = () => {
+type HomeComponentProps = {
+  navigation: NavigationProp<any>;
+};
+
+const HomeComponent: React.FC<HomeComponentProps> = ({ navigation }) => {
+  const handlerSubmitMoreInfo = () => {
+    console.log("teste more info");
+    navigation.navigate("MoreInfo");
+  };
+
   return (
     <>
       <Stack
@@ -24,7 +34,11 @@ const HomeComponent = () => {
         />
         <HStack space={4}>
           <Button colorScheme="blue"> Cadastre-se </Button>
-          <Button variant="ghost" colorScheme="success">
+          <Button
+            variant="ghost"
+            colorScheme="success"
+            onPress={handlerSubmitMoreInfo}
+          >
             <Text style={{ color: "blue" }}>Saiba mais</Text>
           </Button>
         </HStack>
@@ -32,4 +46,5 @@ const HomeComponent = () => {
     </>
   );
 };
+
 export default HomeComponent;

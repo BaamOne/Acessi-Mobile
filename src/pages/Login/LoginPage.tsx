@@ -3,6 +3,7 @@ import React from "react";
 import LoginComponent from "../../components/Login/LoginComponent";
 import { Box, View } from "native-base";
 import { StyleSheet } from "react-native";
+import { LoginPageProps } from "../../interfaces/Util/LoginPageProps";
 
 const styles = StyleSheet.create({
   container: {
@@ -10,10 +11,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-interface LoginPageProps {
-  navigation: any;
-}
 
 const LoginPage: React.FC<LoginPageProps> = ({ navigation }) => {
   return (
