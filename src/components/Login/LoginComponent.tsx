@@ -17,7 +17,7 @@ import React, { useState } from "react";
 import { NavigationProp, StackActions } from "@react-navigation/native";
 import { UserModel } from "../../interfaces/User/UserInterface";
 import { UserService } from "../../services/User/UserService";
-import AlertComponent from "../AlertComponent/AlertComponent";
+import AlertComponent from "../Alert/AlertComponent";
 import { CommonActions } from "@react-navigation/native";
 
 type LoginComponentProps = {

@@ -16,7 +16,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({ navigation }) => {
   return (
     <>
       <Stack
-        bg="#fff"
+        bg="#F3F3F3"
         flex={1}
         justifyContent="center"
         alignItems="flex-start"

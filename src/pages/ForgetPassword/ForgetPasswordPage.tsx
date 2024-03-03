@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 const ForgetPasswordPage = () => {
   return (
     <>
-      <Box flex={1} bg="#fff">
+      <Box flex={1} bg="#F3F3F3">
         <View style={styles.container}>
           <ForgetPasswordComponent></ForgetPasswordComponent>
         </View>

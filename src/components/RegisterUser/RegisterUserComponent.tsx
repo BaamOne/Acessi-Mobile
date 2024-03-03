@@ -10,7 +10,7 @@ import {
 } from "native-base";
 import { UserService } from "../../services/User/UserService";
 import { UserModel } from "../../interfaces/User/UserInterface";
-import AlertComponent from "../AlertComponent/AlertComponent";
+import AlertComponent from "../Alert/AlertComponent";
 
 const RegisterUser: React.FC = () => {
   const [fullName, setFullName] = useState("");

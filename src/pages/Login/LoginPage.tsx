@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 const LoginPage: React.FC<LoginPageProps> = ({ navigation }) => {
   return (
     <>
-      <Box flex={1} bg="#fff">
+      <Box flex={1} bg="#F3F3F3">
         <View style={styles.container}>
           <LoginComponent navigation={navigation}></LoginComponent>
         </View>

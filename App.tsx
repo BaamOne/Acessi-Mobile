@@ -5,18 +5,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import RegisterUserPage from "./src/pages/RegisterUser/RegisterUserPage";
 import { NativeBaseProvider } from "native-base";
 import ForgetPasswordPage from "./src/pages/ForgetPassword/ForgetPasswordPage";
-import HeaderLeftComponent from "./src/components/HeadersComponent/Left/HeaderLeftComponent";
-import HeaderRightComponent from "./src/components/HeadersComponent/Right/HeaderRightComponent";
+import HeaderLeftComponent from "./src/components/Headers/Left/HeaderLeftComponent";
+import HeaderRightComponent from "./src/components/Headers/Right/HeaderRightComponent";
 import BasePage from "./src/pages/Base/BasePage";
 
-const Stack = createNativeStackNavigator();
+const AppStack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="login">
-          <Stack.Screen
+        <AppStack.Navigator initialRouteName="login">
+          <AppStack.Screen
             name="login"
             component={LoginPage}
             options={{
@@ -24,7 +24,7 @@ export default function App() {
               headerTitleAlign: "center",
             }}
           />
-          <Stack.Screen
+          <AppStack.Screen
             name="register-user"
             component={RegisterUserPage}
             options={{
@@ -32,7 +32,7 @@ export default function App() {
               headerTitleAlign: "center",
             }}
           />
-          <Stack.Screen
+          <AppStack.Screen
             name="forget-password"
             component={ForgetPasswordPage}
             options={{
@@ -41,7 +41,7 @@ export default function App() {
             }}
           />
 
-          <Stack.Screen
+          <AppStack.Screen
             name="basepage"
             component={BasePage}
             options={{
@@ -50,7 +50,7 @@ export default function App() {
               headerRight: () => <HeaderRightComponent></HeaderRightComponent>,
             }}
           />
-        </Stack.Navigator>
+        </AppStack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
   );

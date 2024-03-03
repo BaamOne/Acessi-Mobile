@@ -13,7 +13,7 @@ import { StyleSheet } from "react-native";
 const RegisterUserPage: React.FC = () => {
   return (
     <>
-      <Box flex={1} bg="#fff" justifyContent="center">
+      <Box flex={1} bg="#F3F3F3" justifyContent="center">
         <View>
           <RegisterComponent />
         </View>

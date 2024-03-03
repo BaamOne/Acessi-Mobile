@@ -4,6 +4,7 @@ import HomeComponent from "../../components/Home/HomeComponent";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MoreInfoComponent from "../../components/MoreInfo/MoreInfoComponent";
+import AvaliationsPage from "../Avaliations/AvaliationsPage";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -15,6 +16,13 @@ const MoreInfoPage = () => {
         <Stack.Screen
           name="MoreInfo"
           component={MoreInfoComponent}
+          options={{
+            headerShown: false,
+          }}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Avalitions"
+          component={AvaliationsPage}
           options={{
             headerShown: false,
           }}

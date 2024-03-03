@@ -1,15 +1,46 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeComponent from "../../components/Home/HomeComponent";
 import HomePage from "../Home/HomePage";
-import SettingsComponent from "../../components/Settings/SettingsComponent";
+import SettingsPage from "../Settings/SettingsPage";
+import StatisticsPage from "../Statistics/StatisticsPage";
+import { Icon } from "native-base";
+import React from "react";
+import { Ionicons, FontAwesome, Entypo } from "@expo/vector-icons";
 
-const Tab = createBottomTabNavigator();
+const TabHome = createBottomTabNavigator();
 
 export default function BasePage() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Settings" component={SettingsComponent} />
-    </Tab.Navigator>
+    <TabHome.Navigator screenOptions={{ headerShown: false }}>
+      <TabHome.Screen
+        name="Home"
+        component={HomePage}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon as={Ionicons} name="home" size={30} />
+          ),
+          tabBarLabel: () => null, // Remove the tab label
+        }}
+      />
+      <TabHome.Screen
+        name="Statitics"
+        component={StatisticsPage}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Entypo as={Ionicons} name="bar-graph" size={30} />
+          ),
+          tabBarLabel: () => null, // Remove the tab label
+        }}
+      />
+      <TabHome.Screen
+        name="Settings"
+        component={SettingsPage}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Icon as={Ionicons} name="settings" size={30} />
+          ),
+          tabBarLabel: () => null, // Remove the tab label
+        }}
+      />
+    </TabHome.Navigator>
   );
 }
