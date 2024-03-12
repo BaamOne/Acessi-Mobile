@@ -7,6 +7,7 @@ import {
   HStack,
   Heading,
   Image,
+  ScrollView,
   Stack,
   Text,
 } from "native-base";
@@ -16,6 +17,126 @@ import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInter
 
 const AvaliationComponent = () => {
   const avaliations: AvaliationInterface[] = [
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
+    {
+      titleAvaliation: "Jaragua do sul park shopping",
+      avaliationRating: 4,
+      image:
+        "https://poracaso.com/wp-content/uploads/2023/02/shopping_jaragua_park.jpg",
+    },
     {
       titleAvaliation: "Jaragua do sul park shopping",
       avaliationRating: 4,
@@ -36,76 +157,89 @@ const AvaliationComponent = () => {
     },
   ];
 
+  const itemHeight = 270; // Altura fixa das box
+  const totalItems = avaliations.length;
+  const totalHeight = itemHeight * totalItems;
+
   return (
     <>
-      {avaliations.map((avaliation, index) => (
-        <Box key={index} alignItems="center" maxW="80" mx="auto" mt={5}>
+      <ScrollView h={`${Math.min(totalHeight, 800)}px`}>
+        {avaliations.map((avaliation, index) => (
           <Box
-            rounded="lg"
-            overflow="hidden"
-            borderColor="coolGray.200"
-            borderWidth="0.5"
-            _dark={{
-              borderColor: "coolGray.600",
-              backgroundColor: "gray.700",
-            }}
-            _web={{
-              shadow: 2,
-              borderWidth: 0,
-            }}
-            _light={{
-              backgroundColor: "gray.50",
-            }}
-            w="80" // Tamanho fixo
+            key={index}
+            alignItems="center"
+            maxW="80"
+            mx="auto"
+            mt={5}
+            display={index % 2 === 0 ? "block" : "inline-block"}
           >
-            <Box>
-              <AspectRatio w="100%" ratio={16 / 9}>
-                <Image
-                  source={{
-                    uri: avaliation.image,
-                  }}
-                  alt="image"
-                />
-              </AspectRatio>
-            </Box>
-
-            <Stack p="4" space={3}>
-              <Heading size="md" ml="-1" noOfLines={1}>
-                {avaliation.titleAvaliation}
-              </Heading>
-            </Stack>
-
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
-              style={{ marginBottom: 2 }}
+            <Box
+              rounded="lg"
+              overflow="hidden"
+              borderColor="coolGray.200"
+              borderWidth="0.5"
+              _dark={{
+                borderColor: "coolGray.600",
+                backgroundColor: "gray.700",
+              }}
+              _web={{
+                shadow: 2,
+                borderWidth: 0,
+              }}
+              _light={{
+                backgroundColor: "gray.50",
+              }}
+              w="80"
             >
-              <HStack>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <MaterialCommunityIcons
-                    key={index}
-                    name="star"
-                    size={24}
-                    color={
-                      index < avaliation.avaliationRating ? "gold" : "gray"
-                    }
+              <Box>
+                <AspectRatio w="100%" ratio={16 / 9}>
+                  <Image
+                    source={{
+                      uri: avaliation.image,
+                    }}
+                    alt="image"
                   />
-                ))}
-              </HStack>
-            </Stack>
+                </AspectRatio>
+              </Box>
 
-            <Stack direction="row" justifyContent="space-between" space={2}>
-              <Button colorScheme="blue" ml={2} mr={2} mb={2} flex={1}>
-                Avaliar
-              </Button>
-              <Button colorScheme="blue" ml={2} mr={2} mb={2} flex={1}>
-                Ver
-              </Button>
-            </Stack>
+              <Stack p="4" space={3}>
+                <Heading size="md" ml="-1" noOfLines={1}>
+                  {avaliation.titleAvaliation}
+                </Heading>
+              </Stack>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                style={{ marginBottom: 2 }}
+              >
+                <HStack>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <MaterialCommunityIcons
+                      key={index}
+                      name="star"
+                      size={24}
+                      color={
+                        index < avaliation.avaliationRating ? "gold" : "gray"
+                      }
+                    />
+                  ))}
+                </HStack>
+              </Stack>
+
+              <Stack direction="row" justifyContent="space-between" space={2}>
+                <Button colorScheme="blue" ml={2} mr={2} mb={2} flex={1}>
+                  Avaliar
+                </Button>
+                <Button colorScheme="blue" ml={2} mr={2} mb={2} flex={1}>
+                  Ver
+                </Button>
+              </Stack>
+            </Box>
           </Box>
-        </Box>
-      ))}
+        ))}
+      </ScrollView>
     </>
   );
 };
