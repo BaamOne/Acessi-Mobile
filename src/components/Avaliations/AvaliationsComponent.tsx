@@ -6,16 +6,20 @@ import {
   Flex,
   HStack,
   Heading,
+  Icon,
   Image,
+  Input,
   ScrollView,
   Stack,
   Text,
 } from "native-base";
-import React from "react";
+import React, { useState } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInterface";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const AvaliationComponent = () => {
+  const [avaliationFilter, setFilterAvalation] = useState<string>("");
   const avaliations: AvaliationInterface[] = [
     {
       titleAvaliation: "Jaragua do sul park shopping",
@@ -161,8 +165,31 @@ const AvaliationComponent = () => {
   const totalItems = avaliations.length;
   const totalHeight = itemHeight * totalItems;
 
+  const handleSearch = () => {
+    console.log("Pesquisar", avaliationFilter);
+  };
+
   return (
     <>
+      <Input
+        size="md"
+        variant="outline"
+        placeholder="Procurar..."
+        mx={12}
+        mt={2}
+        value={avaliationFilter}
+        onChangeText={setFilterAvalation}
+        InputRightElement={
+          <Icon
+            as={<MaterialIcons name="search" />}
+            size={5}
+            ml="2"
+            onPress={handleSearch}
+            color="muted.400"
+          />
+        }
+      />
+
       <ScrollView h={`${Math.min(totalHeight, 800)}px`}>
         {avaliations.map((avaliation, index) => (
           <Box
