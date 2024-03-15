@@ -1,8 +1,9 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { UserModel } from "../../interfaces/User/UserInterface";
+import { BaseRoute } from "../../interfaces/RotaBase";
 
 export class UserService {
-  private API = "http://localhost:8085/acessi";
+  private API = `${BaseRoute.route}/acessi`;
 
   async CreateUser(user: UserModel) {
     try {
