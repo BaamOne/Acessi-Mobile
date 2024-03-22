@@ -1,8 +1,10 @@
 # Acessi-Mobile
 Aplicativo Mobile Acessi+
 
-instalação do expo 
+node version
+v18.12.1
 
+instalação do expo 
 npm install -g expo-cli@0.10.14
 
 Demais dependencias 
