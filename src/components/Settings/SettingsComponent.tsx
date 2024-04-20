@@ -89,26 +89,6 @@ const SettingsComponent: React.FC = () => {
           {user.emailUser}
         </Text>
       </Container>
-
-      <Box alignItems="flex-start" style={{ marginTop: 30 }}>
-        <Box w="260">
-          <Heading mx="3" alignItems="center" flexDirection="row">
-            Cadastro Avaliação
-          </Heading>
-          <Divider
-            my="2"
-            _light={{
-              bg: "muted.800",
-            }}
-            _dark={{
-              bg: "muted.50",
-            }}
-          />
-          <Heading mx="3" alignItems="center" flexDirection="row">
-            Cadastro de Vagas
-          </Heading>
-        </Box>
-      </Box>
     </>
   );
 };
