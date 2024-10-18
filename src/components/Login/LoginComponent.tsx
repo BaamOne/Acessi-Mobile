@@ -40,13 +40,13 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
 
   const handleSubmitButton = () => {
     if (user.emailUser == "" || user.passwordUser == "") {
-      setAlertMessage("Os campos de usuario e senha sao obrigatorios");
+      setAlertMessage("Os campos de usuário e senha sao obrigatórios");
       setAlertStatus("warning");
       return;
     }
 
     serviceUser.LoginUser(user).then((res) => {
-      if (res == 200 || 1 == 1) {
+      if (res == 200) {
         const replaceAction = StackActions.replace("basepage", {});
 
         navigation.dispatch(replaceAction);

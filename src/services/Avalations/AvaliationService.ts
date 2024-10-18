@@ -1,11 +1,11 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
-import { AvaliationModel } from "../../interfaces/Avaliation/AvaliationInterface";
+import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInterface";
 import { BaseRoute } from "../../interfaces/RotaBase";
 
 export class AvaliationService {
   private API = `${BaseRoute.route}/acessi`;
 
-  async CreateAvaliation(avaliation: AvaliationModel) {
+  async CreateAvaliation(avaliation: AvaliationInterface) {
     try {
       const response = await axios.post(
         `${this.API}/create-avaliation`,
@@ -13,7 +13,6 @@ export class AvaliationService {
       );
       return response.status;
     } catch (error) {
-      s;
       return this.handleError(error);
     }
   }
@@ -21,7 +20,7 @@ export class AvaliationService {
   async GetAvaliations(descriptionAvaliation: string) {
     try {
       const response = await axios.get(
-        `${this.API}/search-avaliation?description=${descriptionAvaliation}`
+        `${this.API}/search-avaliation?name=${descriptionAvaliation}`
       );
       return response.data;
     } catch (error) {
@@ -29,7 +28,7 @@ export class AvaliationService {
     }
   }
 
-  async AvaliateLocal(avaliation: AvaliationModel) {
+  async AvaliateLocal(avaliation: AvaliationInterface) {
     try {
       const response = await axios.post(
         `${this.API}/avaliation/avaliate`,
