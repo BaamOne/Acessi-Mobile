@@ -3,7 +3,7 @@ import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInter
 import { BaseRoute } from "../../interfaces/RotaBase";
 
 export class AvaliationService {
-  private API = `${BaseRoute.route}/acessi`;
+  private API = `${BaseRoute.route}/acessi/avaliation`;
 
   async CreateAvaliation(avaliation: AvaliationInterface) {
     try {
@@ -28,12 +28,21 @@ export class AvaliationService {
     }
   }
 
+  async GetAllAvaliations(): Promise<AvaliationInterface[]> {
+    try {
+      const response = await axios.get<AvaliationInterface[]>(
+        `${this.API}/search-all-avaliation`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar avaliações:", error);
+      return [];
+    }
+  }
+
   async AvaliateLocal(avaliation: AvaliationInterface) {
     try {
-      const response = await axios.post(
-        `${this.API}/avaliation/avaliate`,
-        avaliation
-      );
+      const response = await axios.post(`${this.API}/avaliate`, avaliation);
       return response.status;
     } catch (error) {
       return this.handleError(error);

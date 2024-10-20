@@ -1,7 +1,7 @@
 import { Float } from "react-native/Libraries/Types/CodegenTypes";
 
 export interface AvaliationInterface {
-  titleAvaliation: string;
+  name: string;
   avaliationRating: number;
-  image?: string;
+  imageAvaliationLocal?: string;
 }
