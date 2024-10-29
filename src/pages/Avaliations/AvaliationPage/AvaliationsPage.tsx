@@ -1,9 +1,9 @@
 // src/pages/LoginPage.tsx
 import React from "react";
-import LoginComponent from "../../components/Login/LoginComponent";
 import { Box, View } from "native-base";
 import { StyleSheet } from "react-native";
-import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
+import AvaliationComponent from "../../../components/Avaliations/AvaliationsComponent";
+import { NavigationBaseProps } from "../../../interfaces/Util/Navigation/NavigatorBase";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,16 +12,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginPage: React.FC<NavigationBaseProps> = ({ navigation }) => {
+const AvaliationFormPage: React.FC<NavigationBaseProps> = ({ navigation }) => {
   return (
     <>
       <Box flex={1} bg="#F3F3F3">
         <View style={styles.container}>
-          <LoginComponent navigation={navigation}></LoginComponent>
+          <AvaliationComponent navigation={navigation}></AvaliationComponent>
         </View>
       </Box>
     </>
   );
 };
 
-export default LoginPage;
+export default AvaliationFormPage;

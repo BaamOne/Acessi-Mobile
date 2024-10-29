@@ -18,13 +18,9 @@ import { NavigationProp, StackActions } from "@react-navigation/native";
 import { UserModel } from "../../interfaces/User/UserInterface";
 import { UserService } from "../../services/User/UserService";
 import AlertComponent from "../Alert/AlertComponent";
-import { CommonActions } from "@react-navigation/native";
+import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
-type LoginComponentProps = {
-  navigation: NavigationProp<any>;
-};
-
-const LoginComponent: React.FC<LoginComponentProps> = ({ navigation }) => {
+const LoginComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [alertMessage, setAlertMessage] = useState("");

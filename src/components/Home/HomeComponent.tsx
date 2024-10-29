@@ -1,13 +1,8 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View, StyleSheet } from "react-native";
-import { Box, Image, Stack, Button, HStack } from "native-base";
-import { NavigationProp } from "@react-navigation/native";
+import { Text } from "react-native";
+import { Image, Stack, Button, HStack } from "native-base";
+import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
-type HomeComponentProps = {
-  navigation: NavigationProp<any>;
-};
-
-const HomeComponent: React.FC<HomeComponentProps> = ({ navigation }) => {
+const HomeComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
   const handlerSubmitMoreInfo = () => {
     console.log("teste more info");
     navigation.navigate("MoreInfo");

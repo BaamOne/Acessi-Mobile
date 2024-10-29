@@ -5,6 +5,7 @@ import StatisticsPage from "../Statistics/StatisticsPage";
 import { Icon } from "native-base";
 import React from "react";
 import { Ionicons, FontAwesome, Entypo } from "@expo/vector-icons";
+import AvaliationMainPage from "../Avaliations/AvaliationMain";
 
 const TabHome = createBottomTabNavigator();
 
@@ -23,10 +24,10 @@ export default function BasePage() {
       />
       <TabHome.Screen
         name="Statitics"
-        component={StatisticsPage}
+        component={AvaliationMainPage}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Entypo as={Ionicons} name="bar-graph" size={30} />
+            <Entypo as={Ionicons} name="star" size={30} />
           ),
           tabBarLabel: () => null, // Remove the tab label
         }}

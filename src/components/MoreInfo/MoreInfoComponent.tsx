@@ -1,6 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import React from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
 const squareWidth = "80.00%";
 const squareHeight = "30.33%";
@@ -33,25 +34,11 @@ const styles = StyleSheet.create({
   },
 });
 
-type MoreInfoComponentProps = {
-  navigation: NavigationProp<any>;
-};
-
-const MoreInfoComponent: React.FC<MoreInfoComponentProps> = ({
-  navigation,
-}) => {
-  const HandleOnPressAvalitions = () => {
-    navigation.navigate("Avalitions");
-    console.log("Avalitions");
-  };
-
+const MoreInfoComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={HandleOnPressAvalitions}
-          style={styles.square}
-        >
+        <TouchableOpacity style={styles.square}>
           <Text style={styles.textTitle}>Censo de PCDs</Text>
           <Text style={styles.text}>
             Torne mais visível as pessoas com deficiência .

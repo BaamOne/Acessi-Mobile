@@ -2,8 +2,6 @@ import {
   AspectRatio,
   Box,
   Button,
-  Center,
-  Flex,
   HStack,
   Heading,
   Icon,
@@ -15,52 +13,21 @@ import {
 } from "native-base";
 import React, { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInterface";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { AvaliationService } from "../../services/Avalations/AvaliationService";
-import { Utils } from "../../services/Utils/Utils";
+import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInterface";
+import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
-const AvaliationComponent = () => {
+const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
   const [avaliationFilter, setFilterAvalation] = useState<string>("");
   const [avaliations, setAvaliations] = useState<AvaliationInterface[]>([]);
-  const [imageBase64, setImageBase64] = useState<{ [key: string]: string }>({});
   const avaliationService = new AvaliationService();
-  const itemHeight = 270; // Altura fixa das box
-  const totalItems = avaliations.length;
-  const totalHeight = itemHeight * totalItems;
-
-  const convertBlobToBase64 = (blob: string | ArrayBuffer): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      try {
-        const base64 = btoa(
-          String.fromCharCode(...new Uint8Array(blob as ArrayBuffer))
-        );
-        resolve(`data:image/png;base64,${base64}`);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
 
   useEffect(() => {
     const fetchAvaliations = async () => {
       const allAvaliations = await avaliationService.GetAllAvaliations();
       setAvaliations(allAvaliations);
-      console.log(allAvaliations);
-
-      // Converte as imagens para base64 e armazena em um estado separado
-      const base64Images: { [key: string]: string } = {};
-      for (const avaliation of allAvaliations) {
-        if (avaliation.imageAvaliationLocal) {
-          const base64Image = await convertBlobToBase64(
-            avaliation.imageAvaliationLocal
-          );
-          base64Images[avaliation.name] = base64Image;
-        }
-      }
-      setImageBase64(base64Images);
     };
-
     fetchAvaliations();
   }, []);
 
@@ -68,6 +35,10 @@ const AvaliationComponent = () => {
     avaliationService.GetAvaliations(avaliationFilter).then((avaliation) => {
       setAvaliations(avaliation);
     });
+  };
+
+  const handlePressAvaliation = () => {
+    navigation.navigate("AvaliationForm");
   };
 
   return (
@@ -91,7 +62,11 @@ const AvaliationComponent = () => {
         }
       />
 
-      <ScrollView h={`${Math.min(totalHeight, 800)}px`}>
+      <ScrollView
+        h="700px"
+        maxH="700px"
+        _contentContainerStyle={{ paddingBottom: 4 }}
+      >
         {avaliations.map((avaliation, index) => (
           <Box
             key={index}
@@ -110,10 +85,6 @@ const AvaliationComponent = () => {
                 borderColor: "coolGray.600",
                 backgroundColor: "gray.700",
               }}
-              _web={{
-                shadow: 2,
-                borderWidth: 0,
-              }}
               _light={{
                 backgroundColor: "gray.50",
               }}
@@ -123,7 +94,7 @@ const AvaliationComponent = () => {
                 <AspectRatio w="100%" ratio={16 / 9}>
                   <Image
                     source={{
-                      uri: imageBase64[avaliation.name] || "",
+                      uri: avaliation.imageAvaliationLocal,
                     }}
                     alt="image"
                   />
@@ -157,7 +128,14 @@ const AvaliationComponent = () => {
               </Stack>
 
               <Stack direction="row" justifyContent="space-between" space={2}>
-                <Button colorScheme="blue" ml={2} mr={2} mb={2} flex={1}>
+                <Button
+                  colorScheme="blue"
+                  onPress={handlePressAvaliation}
+                  ml={2}
+                  mr={2}
+                  mb={2}
+                  flex={1}
+                >
                   Avaliar
                 </Button>
                 <Button colorScheme="blue" ml={2} mr={2} mb={2} flex={1}>

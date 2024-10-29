@@ -3,12 +3,9 @@ import { Input, Button, Text, Image, Stack } from "native-base";
 import AlertComponent from "../Alert/AlertComponent";
 import { UserService } from "../../services/User/UserService";
 import { NavigationProp } from "@react-navigation/native";
+import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
-type ForgotPasswordComponentProps = {
-  navigation: NavigationProp<any>;
-};
-
-const ForgotPasswordComponent: React.FC<ForgotPasswordComponentProps> = ({
+const ForgotPasswordComponent: React.FC<NavigationBaseProps> = ({
   navigation,
 }) => {
   const [isEmailSent, setIsEmailSent] = useState(false);

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, View } from "native-base";
 import { StyleSheet } from "react-native";
 import ForgotPasswordComponent from "../../components/ForgotPassword/ForgotPasswordComponent";
-import { ForgotPasswordPageProps } from "../../interfaces/Util/ForgotPasswordPage";
+import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,9 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ForgetPasswordPage: React.FC<ForgotPasswordPageProps> = ({
-  navigation,
-}) => {
+const ForgetPasswordPage: React.FC<NavigationBaseProps> = ({ navigation }) => {
   return (
     <>
       <Box flex={1} bg="#F3F3F3">

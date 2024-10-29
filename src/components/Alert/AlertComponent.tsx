@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Alert, View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-interface AlertComponentProps {
-  message: string;
-  status: "success" | "error" | "info" | "warning" | "";
-  onClose?: () => void; // Callback para fechar o alerta
-  timerTimeout?: number | null; // Tempo em milissegundos para fechar o alerta automaticamente
-}
+import { AlertComponentProps } from "../../interfaces/AlertComponent/AlertComponentProps";
 
 const AlertComponent: React.FC<AlertComponentProps> = ({
   message,
