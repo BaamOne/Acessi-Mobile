@@ -37,8 +37,8 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
     });
   };
 
-  const handlePressAvaliation = () => {
-    navigation.navigate("AvaliationForm");
+  const handlePressAvaliation = (avaliation: AvaliationInterface) => {
+    navigation.navigate("AvaliationForm", { avaliation });
   };
 
   return (
@@ -102,9 +102,14 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
               </Box>
 
               <Stack p="4" space={3}>
-                <Heading size="md" ml="-1" noOfLines={1}>
-                  {avaliation.name}
-                </Heading>
+                <Text
+                  fontSize="lg"
+                  fontWeight="bold"
+                  textAlign="center"
+                  flexWrap="wrap"
+                >
+                  {avaliation?.name}
+                </Text>
               </Stack>
 
               <Stack
@@ -130,7 +135,7 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
               <Stack direction="row" justifyContent="space-between" space={2}>
                 <Button
                   colorScheme="blue"
-                  onPress={handlePressAvaliation}
+                  onPress={() => handlePressAvaliation(avaliation)}
                   ml={2}
                   mr={2}
                   mb={2}

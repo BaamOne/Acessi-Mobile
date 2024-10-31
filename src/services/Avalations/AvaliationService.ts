@@ -1,6 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInterface";
 import { BaseRoute } from "../../interfaces/RotaBase";
+import { AvaliationItemInterface } from "../../interfaces/Avaliation/AvaliationItemInterface";
 
 export class AvaliationService {
   private API = `${BaseRoute.route}/acessi/avaliation`;
@@ -10,6 +11,18 @@ export class AvaliationService {
       const response = await axios.post(
         `${this.API}/create-avaliation`,
         avaliation
+      );
+      return response.status;
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  async CreateAvaliationItem(avaliationItem: AvaliationItemInterface) {
+    try {
+      const response = await axios.post(
+        `${this.API}/register-avaliation-item`,
+        avaliationItem
       );
       return response.status;
     } catch (error) {

@@ -20,7 +20,7 @@ const AvaliationMainPage: React.FC<NavigationBaseProps> = ({ navigation }) => {
         ></Stack.Screen>
         <Stack.Screen
           name="AvaliationForm"
-          component={AvaliationFormPage}
+          component={(props: any) => <AvaliationFormPage {...props} />}
           options={{
             headerShown: false,
           }}
