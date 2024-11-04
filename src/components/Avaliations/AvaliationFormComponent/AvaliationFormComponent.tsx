@@ -94,6 +94,7 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
           }
         }}
         multiline={true}
+        height={150}
       />
       <Button onPress={handleSubmit} colorScheme="blue">
         Salvar Avaliação
