@@ -17,6 +17,7 @@ import { NavigationProp, RouteProp } from "@react-navigation/native";
 import { NavigationBaseAvaliation } from "../../../interfaces/Avaliation/NavigationBaseAvaliation";
 import { AvaliationService } from "../../../services/Avalations/AvaliationService";
 import { AvaliationItemInterface } from "../../../interfaces/Avaliation/AvaliationItemInterface";
+import AlertComponent from "../../Alert/AlertComponent";
 
 const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
   navigation,
@@ -50,7 +51,15 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
       }
       setAlertMessage("Availiação salva com sucesso");
       setAlertStatus("success");
+      setTimeout(() => {
+        onClose();
+      }, 2000);
     });
+  };
+
+  const handleAlertClose = () => {
+    setAlertMessage("");
+    setAlertStatus("");
   };
 
   const onClose = () => {
@@ -101,6 +110,13 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
       <Button onPress={onClose} colorScheme="red" variant="outline">
         Cancelar
       </Button>
+      {alertMessage && (
+        <AlertComponent
+          message={alertMessage}
+          status={alertStatus}
+          onClose={handleAlertClose}
+        />
+      )}
     </VStack>
   );
 };

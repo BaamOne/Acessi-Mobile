@@ -17,7 +17,10 @@ export class UserService {
 
   async LoginUser(user: UserModel) {
     try {
-      const response = await axios.post(`${this.API}/login/auth`, user);
+      const response = await axios.post(`${this.API}/login/auth`, user, {
+        withCredentials: true,
+      });
+      console.log(response);
       return response.status;
     } catch (error) {
       return this.handleError(error);

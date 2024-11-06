@@ -27,7 +27,7 @@ const HomeComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
           width="80%"
           marginBottom="25px"
         />
-        <HStack space={4}>
+        {/* <HStack space={4}>
           <Button colorScheme="blue"> Cadastre-se </Button>
           <Button
             variant="ghost"
@@ -36,7 +36,7 @@ const HomeComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
           >
             <Text style={{ color: "blue" }}>Saiba mais</Text>
           </Button>
-        </HStack>
+        </HStack> */}
       </Stack>
     </>
   );
