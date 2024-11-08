@@ -20,10 +20,18 @@ export class UserService {
       const response = await axios.post(`${this.API}/login/auth`, user, {
         withCredentials: true,
       });
-      console.log(response);
+      this.RegisterLogin(response);
       return response.status;
     } catch (error) {
       return this.handleError(error);
+    }
+  }
+
+  async RegisterLogin(response: any) {
+    if (response.status == 200 && response.data.idUser) {
+      localStorage.setItem("loggedUser", response.data.idUser);
+    } else {
+      localStorage.setItem("loggedUser", "deuBode");
     }
   }
 

@@ -15,6 +15,7 @@ import React, { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { AvaliationService } from "../../services/Avalations/AvaliationService";
+import { useFocusEffect } from "@react-navigation/native";
 import { AvaliationInterface } from "../../interfaces/Avaliation/AvaliationInterface";
 import { NavigationBaseProps } from "../../interfaces/Util/Navigation/NavigatorBase";
 
@@ -30,6 +31,13 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
     };
     fetchAvaliations();
   }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      handleSearch();
+      console.log("AvaliationComponent focused");
+    }, [])
+  );
 
   const handleSearch = () => {
     avaliationService.GetAvaliations(avaliationFilter).then((avaliation) => {

@@ -4,4 +4,5 @@ export interface AvaliationItemInterface {
   avaliationGivenByUser: string;
   avaliationRating: number;
   idLocalAvaliation: number;
+  idUser: string | null;
 }

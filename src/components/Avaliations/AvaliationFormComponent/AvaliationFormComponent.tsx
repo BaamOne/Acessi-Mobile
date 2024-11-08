@@ -37,12 +37,17 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
   };
 
   const handleSubmit = () => {
+    const loggedUser = localStorage.getItem("loggedUser");
+
+    console.log("loggedUser", loggedUser);
     const avaliationItem: AvaliationItemInterface = {
       avaliationGivenByUser: description,
       avaliationRating: rating,
       idLocalAvaliation: avaliation.idLocalAvaliation,
+      idUser: loggedUser,
     };
 
+    console.log("avaliationItem", avaliationItem);
     avaliationService.CreateAvaliationItem(avaliationItem).then((status) => {
       if (!(status == 200)) {
         setAlertMessage("Problemas ao salvar a avaliação");
