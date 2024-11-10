@@ -53,6 +53,25 @@ export class AvaliationService {
     }
   }
 
+  async GetAvaliationComments(
+    idAvaliation: Number
+  ): Promise<AvaliationItemInterface[]> {
+    try {
+      const response = await axios.get<AvaliationItemInterface[]>(
+        `${this.API}/get-avaliation-itens`,
+        {
+          params: {
+            idAvaliation,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar avaliações:", error);
+      return [];
+    }
+  }
+
   async AvaliateLocal(avaliation: AvaliationInterface) {
     try {
       const response = await axios.post(`${this.API}/avaliate`, avaliation);

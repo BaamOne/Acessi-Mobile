@@ -1,8 +1,11 @@
 import { Float } from "react-native/Libraries/Types/CodegenTypes";
+import { AvaliationInterface } from "./AvaliationInterface";
+import { UserModel } from "../User/UserInterface";
 
 export interface AvaliationItemInterface {
   avaliationGivenByUser: string;
   avaliationRating: number;
-  idLocalAvaliation: number;
-  idUser: string | null;
+  avaliationLocal: AvaliationInterface;
+  user: UserModel;
+  dateAvaliation: Date;
 }

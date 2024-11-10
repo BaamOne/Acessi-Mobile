@@ -18,6 +18,7 @@ import { NavigationBaseAvaliation } from "../../../interfaces/Avaliation/Navigat
 import { AvaliationService } from "../../../services/Avalations/AvaliationService";
 import { AvaliationItemInterface } from "../../../interfaces/Avaliation/AvaliationItemInterface";
 import AlertComponent from "../../Alert/AlertComponent";
+import { UserModel } from "../../../interfaces/User/UserInterface";
 
 const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
   navigation,
@@ -38,13 +39,16 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
 
   const handleSubmit = () => {
     const loggedUser = localStorage.getItem("loggedUser");
+    const user: UserModel = loggedUser ? JSON.parse(loggedUser) : null;
 
     console.log("loggedUser", loggedUser);
+    console.log("avaliation", avaliation);
     const avaliationItem: AvaliationItemInterface = {
       avaliationGivenByUser: description,
       avaliationRating: rating,
-      idLocalAvaliation: avaliation.idLocalAvaliation,
-      idUser: loggedUser,
+      avaliationLocal: avaliation,
+      user: user,
+      dateAvaliation: new Date(),
     };
 
     console.log("avaliationItem", avaliationItem);

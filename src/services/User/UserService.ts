@@ -29,7 +29,8 @@ export class UserService {
 
   async RegisterLogin(response: any) {
     if (response.status == 200 && response.data.idUser) {
-      localStorage.setItem("loggedUser", response.data.idUser);
+      const user: UserModel = response.data;
+      localStorage.setItem("loggedUser", JSON.stringify(user));
     } else {
       localStorage.setItem("loggedUser", "deuBode");
     }
