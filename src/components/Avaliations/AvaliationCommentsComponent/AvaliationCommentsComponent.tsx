@@ -9,14 +9,17 @@ const AvaliationCommentsComponent: React.FC<{ locationId: number }> = ({
 }) => {
   const [avaliations, setAvaliations] = useState<AvaliationItemInterface[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [hasData, setHasData] = useState<boolean>(true);
   const avaliationService = new AvaliationService();
 
   useEffect(() => {
     const fetchAvaliations = async () => {
       try {
         var data = await avaliationService.GetAvaliationComments(locationId);
-        console.log("Avaliations fetched:", data);
         setAvaliations(data);
+        if (data.length == 0) {
+          setHasData(false);
+        }
       } catch (error) {
         console.error("Error fetching avaliations:", error);
       } finally {
@@ -28,7 +31,15 @@ const AvaliationCommentsComponent: React.FC<{ locationId: number }> = ({
   }, [locationId]);
 
   if (loading) {
-    return <Text>Loading...</Text>;
+    return <Text>Carregando...</Text>;
+  }
+
+  if (!hasData) {
+    return (
+      <View style={styles.noDataContainer}>
+        <Text style={styles.noDataText}>Nenhuma avaliação encontrada</Text>
+      </View>
+    );
   }
 
   return (
@@ -65,6 +76,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+  },
+  noDataContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noDataText: {
+    fontSize: 18,
+    color: "#666",
   },
   highlight: {
     fontSize: 24,

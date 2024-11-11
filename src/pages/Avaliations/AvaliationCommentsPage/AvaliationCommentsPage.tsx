@@ -6,6 +6,7 @@ import AvaliationFormComponent from "../../../components/Avaliations/AvaliationF
 import { NavigationBaseProps } from "../../../interfaces/Util/Navigation/NavigatorBase";
 import { NavigationBaseAvaliation } from "../../../interfaces/Avaliation/NavigationBaseAvaliation";
 import AvaliationCommentsComponent from "../../../components/Avaliations/AvaliationCommentsComponent/AvaliationCommentsComponent";
+import { AvaliationInterface } from "../../../interfaces/Avaliation/AvaliationInterface";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,12 +19,15 @@ const AvaliationCommentsPage: React.FC<NavigationBaseAvaliation> = ({
   navigation,
   route,
 }) => {
+  const { avaliation } = route.params as { avaliation: AvaliationInterface };
+  console.log("AvaliationCommentsPage:", avaliation);
+
   return (
     <>
       <Box flex={1} bg="#F3F3F3">
         <View style={styles.container}>
           <AvaliationCommentsComponent
-            locationId={1}
+            locationId={avaliation.idLocalAvaliation}
           ></AvaliationCommentsComponent>
         </View>
       </Box>

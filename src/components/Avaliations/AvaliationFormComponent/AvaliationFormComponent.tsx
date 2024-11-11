@@ -37,12 +37,28 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
     setRating(value);
   };
 
+  const validateSubmit = (): boolean => {
+    if (rating == 0) {
+      setAlertMessage("Avaliação não pode ser enviada sem nota");
+      setAlertStatus("error");
+      return false;
+    }
+
+    if (description.length == 0) {
+      setAlertMessage("Avaliação não pode ser enviada sem descrição");
+      setAlertStatus("error");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = () => {
+    if (!validateSubmit()) return;
+
     const loggedUser = localStorage.getItem("loggedUser");
     const user: UserModel = loggedUser ? JSON.parse(loggedUser) : null;
 
-    console.log("loggedUser", loggedUser);
-    console.log("avaliation", avaliation);
     const avaliationItem: AvaliationItemInterface = {
       avaliationGivenByUser: description,
       avaliationRating: rating,
@@ -51,7 +67,6 @@ const AvaliationFormComponent: React.FC<NavigationBaseAvaliation> = ({
       dateAvaliation: new Date(),
     };
 
-    console.log("avaliationItem", avaliationItem);
     avaliationService.CreateAvaliationItem(avaliationItem).then((status) => {
       if (!(status == 200)) {
         setAlertMessage("Problemas ao salvar a avaliação");

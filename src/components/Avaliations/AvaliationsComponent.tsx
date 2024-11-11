@@ -11,6 +11,7 @@ import {
   Stack,
   Text,
 } from "native-base";
+import { StyleSheet, View } from "react-native";
 import React, { useState, useEffect, useCallback } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -23,6 +24,7 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
   const [avaliationFilter, setFilterAvalation] = useState<string>("");
   const [avaliations, setAvaliations] = useState<AvaliationInterface[]>([]);
   const avaliationService = new AvaliationService();
+  const [hasValueSearch, setHasValueSearch] = useState<boolean>(true);
 
   const fetchAvaliations = async () => {
     console.log("Fetching avaliations...");
@@ -43,7 +45,12 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
 
   const handleSearch = () => {
     avaliationService.GetAvaliations(avaliationFilter).then((avaliation) => {
-      setAvaliations(avaliation);
+      if (avaliation.length === 0) {
+        setHasValueSearch(false);
+      } else {
+        setHasValueSearch(true);
+        setAvaliations(avaliation);
+      }
     });
   };
 
@@ -52,10 +59,41 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
   };
 
   const handleViewComments = (avaliation: AvaliationInterface) => {
+    console.log("Viewing comments for avaliation:", avaliation);
     navigation.navigate("AvaliationComments", {
-      idLocalAvaliation: avaliation.idLocalAvaliation,
+      avaliation: avaliation,
     });
   };
+
+  if (!hasValueSearch) {
+    return (
+      <>
+        <Input
+          size="md"
+          variant="outline"
+          placeholder="Procurar..."
+          mx={12}
+          mt={2}
+          value={avaliationFilter}
+          onChangeText={setFilterAvalation}
+          InputRightElement={
+            <Icon
+              as={<MaterialIcons name="search" />}
+              size={5}
+              ml="2"
+              onPress={handleSearch}
+              color="muted.400"
+            />
+          }
+        />
+        <View style={styles.noDataContainer}>
+          <Text style={styles.noDataText}>
+            Nenhuma local de avaliação encontrado
+          </Text>
+        </View>
+      </>
+    );
+  }
 
   return (
     <>
@@ -185,5 +223,47 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  noDataContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noDataText: {
+    fontSize: 18,
+    color: "#666",
+  },
+  highlight: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 16,
+  },
+  avaliationContainer: {
+    marginBottom: 16,
+    padding: 16,
+    backgroundColor: "#f9f9f9",
+    borderRadius: 8,
+  },
+  user: {
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  date: {
+    color: "#666",
+    marginBottom: 8,
+  },
+  comment: {
+    fontSize: 16,
+  },
+  stars: {
+    flexDirection: "row",
+    marginTop: 8,
+  },
+});
 
 export default AvaliationComponent;
