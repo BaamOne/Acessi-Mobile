@@ -186,7 +186,9 @@ const AvaliationComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
                         name="star"
                         size={24}
                         color={
-                          index < avaliation.avaliationRating ? "gold" : "gray"
+                          index < Math.floor(avaliation.avaliationRating)
+                            ? "gold"
+                            : "gray"
                         }
                       />
                     ))}
