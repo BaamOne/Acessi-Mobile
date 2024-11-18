@@ -18,14 +18,8 @@ import {
 import { UserModel } from "../../interfaces/User/UserInterface";
 
 const SettingsComponent: React.FC = () => {
-  //ideia e pegar o usuario logado em algum momento atraves do token, por enquanto so um usuario fixo
-
-  const user: UserModel = {
-    nameUser: "Fernando Matheus Engler ",
-    emailUser: "fernando.engler@gmail.com",
-    passwordUser: "",
-  };
-
+  const loggedUser = localStorage.getItem("loggedUser");
+  const user: UserModel = loggedUser ? JSON.parse(loggedUser) : null;
   return (
     <>
       <Container
