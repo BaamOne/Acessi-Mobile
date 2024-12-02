@@ -47,7 +47,6 @@ const LoginComponent: React.FC<NavigationBaseProps> = ({ navigation }) => {
 
         navigation.dispatch(replaceAction);
       } else {
-        //Criar compontent de alerta
         setAlertMessage("Usuário ou senha inválidos");
         setAlertStatus("warning");
       }

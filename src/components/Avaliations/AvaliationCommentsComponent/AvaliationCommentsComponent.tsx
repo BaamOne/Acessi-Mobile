@@ -16,6 +16,7 @@ const AvaliationCommentsComponent: React.FC<{ locationId: number }> = ({
     const fetchAvaliations = async () => {
       try {
         var data = await avaliationService.GetAvaliationComments(locationId);
+        console.log("Avaliations fetched:", data);
         setAvaliations(data);
         if (data.length == 0) {
           setHasData(false);
@@ -49,7 +50,7 @@ const AvaliationCommentsComponent: React.FC<{ locationId: number }> = ({
       </Text>
       <FlatList
         data={avaliations}
-        keyExtractor={(item) => item.avaliationLocal.name + item.user.nameUser}
+        keyExtractor={(item) => item.dateAvaliation.toString()}
         renderItem={({ item }) => (
           <View style={styles.avaliationContainer}>
             <Text style={styles.user}>{item.user.nameUser}</Text>
